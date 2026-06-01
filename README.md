@@ -25,10 +25,10 @@ timestamp,active
 
 
 2. Open the browser Developer Tools console.
-3. Paste the contents of `monitor.js` into the Console and press Enter.
-4. Leave the tab open while monitoring is running.
-5. When you are done, paste the contents of `download.js` into the same Console.
-6. The browser will download `slack_activity_log.txt`.
+3. Paste the contents of `monitor.js` into the Console and press Enter. You can see the array if you run console.log(activityLog) in the console terminal.
+5. Leave the tab open while monitoring is running.
+6. When you are done, paste the contents of `download.js` into the same Console.
+7. The browser will download `slack_activity_log.txt` if you run downloadLog() in the console terminal.
 
 ## How to open the Console
 
