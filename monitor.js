@@ -1,6 +1,7 @@
 const activityLog = [];
 
 function checkStatus() {
+
     const statusEl = document.querySelector(
         'span.padding_left_50[aria-hidden="true"]'
     );
@@ -18,8 +19,16 @@ function checkStatus() {
             ? 1
             : 0;
 
+    // CHANGE THE TIMEZONE ACCORDING TO YOUR TIME!!!
+    const timestamp = new Date().toLocaleString(
+        "sv-SE",
+        {
+            timeZone: "Asia/Dhaka"
+        }
+    );
+
     const record = {
-        timestamp: new Date().toISOString(),
+        timestamp: timestamp,
         active: active
     };
 
@@ -29,7 +38,6 @@ function checkStatus() {
         `${record.timestamp},${record.active}`
     );
 }
-
 
 checkStatus();
 

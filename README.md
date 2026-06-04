@@ -7,14 +7,14 @@ This folder contains two small browser-console scripts for tracking Slack presen
 - `monitor.js` checks the Slack page once per minute and logs whether the user looks active or offline.
 - `download.js` turns the in-memory log into a CSV-style text file you can save locally.
 
-The exported file looks like this:
+The exported file looks like this (timestamps are recorded in local time):
 
 ```text
 timestamp,active
-2026-06-01T14:00:33.426Z,1
-2026-06-01T14:01:34.007Z,1
-2026-06-01T14:02:33.439Z,1
-2026-06-01T14:03:34.007Z,0
+2026-06-01 20:00:33,1
+2026-06-01 20:01:34,1
+2026-06-01 20:02:33,1
+2026-06-01 20:03:34,0
 ```
 
 ## How to use it
@@ -45,6 +45,8 @@ Then click the `Console` tab.
 - Keep the same Slack tab open while monitoring. The log lives in the page session, so refreshing or closing the tab resets it.
 - Run `download.js` in the same tab where you ran `monitor.js`.
 - If Slack changes its layout, the status check may stop finding the presence element.
+
+- Timestamps: `monitor.js` records timestamps in local time using the IANA timezone `"Asia/Dhaka"` by default. To use your timezone, change the `timeZone` value in [monitor.js](monitor.js#L26) to your IANA timezone (for example, `"America/Los_Angeles"`).
 
 ## Common problems
 
