@@ -44,11 +44,9 @@ The project uses `pandas`, `numpy`, and `matplotlib`. `tkinter` is part of the P
 
 ## Heatmap Screenshot
 
-Add your matplotlib heatmap screenshot here.
+<img width="1920" height="1030" alt="image" src="https://github.com/user-attachments/assets/208d9ae3-886c-4b90-9d9c-7ce5b9447d86" />
 
-```md
-![Matplotlib heatmap screenshot](path/to/your/heatmap.png)
-```
+
 
 ## Console Shortcuts
 
