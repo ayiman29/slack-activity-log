@@ -1,38 +1,56 @@
 # Slack Activity Log
 
-This folder contains two small browser-console scripts for tracking Slack presence and exporting the captured activity as a downloadable file.
+This project tracks Slack presence, saves the results into date-based log files, and plots the activity as a heatmap.
 
-## What each script does
+## Project Files
 
 - `monitor.js` checks the Slack page once per minute and logs whether the user looks active or offline.
-- `download.js` turns the in-memory log into a CSV-style text file you can save locally.
+- `download.js` turns the in-memory log into a CSV-style text file.
+- `split_log.py` reads `slack_activity_log.txt` and writes one file per day into `logs/`.
+- `main.py` opens a date picker, splits the log, then shows the selected day as a matplotlib heatmap.
 
-The exported file looks like this (timestamps are recorded in local time):
+## Log Format
+
+The exported file uses a simple two-column format:
 
 ```text
 timestamp,active
-2026-06-01 20:00:33,1
-2026-06-01 20:01:34,1
-2026-06-01 20:02:33,1
-2026-06-01 20:03:34,0
+2026-06-04 20:00:36,0
+2026-06-04 20:01:36,1
+2026-06-04 20:02:36,0
 ```
 
-## How to use it
+`split_log.py` saves rows into files named like `logs/2026-06-04.txt`. If the same date already exists, new rows are appended without duplicating timestamps.
 
-1. Open Slack in your browser and go to the page you want to monitor. Open the profile of the user you want to keep a log of like this:
-   
-   <img width="1920" height="919" alt="image" src="https://github.com/user-attachments/assets/71dd9c3a-8a46-44a3-a47e-90dbd3b0e7e7" />
+## Requirements
 
+Install the Python dependencies with:
 
+```bash
+pip install -r requirements.txt
+```
+
+The project uses `pandas`, `numpy`, and `matplotlib`. `tkinter` is part of the Python standard library.
+
+## How to Use It
+
+1. Open Slack in your browser and go to the page you want to monitor. Open the profile of the user you want to keep a log of.
 2. Open the browser Developer Tools console.
-3. Paste the contents of `monitor.js` into the Console and press Enter. You can see the array if you run console.log(activityLog) in the console terminal.
-5. Leave the tab open while monitoring is running.
-6. When you are done, paste the contents of `download.js` into the same Console.
-7. The browser will download `slack_activity_log.txt` if you run downloadLog() in the console terminal.
+3. Paste the contents of `monitor.js` into the Console and press Enter.
+4. Leave the tab open while monitoring is running.
+5. When you are done, paste the contents of `download.js` into the same Console.
+6. Run `downloadLog()` in the console to download `slack_activity_log.txt`.
+7. Run `main.py` to pick a date, split the log into `logs/`, and display the heatmap.
 
-## How to open the Console
+## Heatmap Screenshot
 
-Use one of these shortcuts:
+Add your matplotlib heatmap screenshot here.
+
+```md
+![Matplotlib heatmap screenshot](path/to/your/heatmap.png)
+```
+
+## Console Shortcuts
 
 - Windows/Linux: `Ctrl + Shift + I`
 - macOS: `Cmd + Option + I`
@@ -40,15 +58,14 @@ Use one of these shortcuts:
 
 Then click the `Console` tab.
 
-## Important notes
+## Notes
 
 - Keep the same Slack tab open while monitoring. The log lives in the page session, so refreshing or closing the tab resets it.
 - Run `download.js` in the same tab where you ran `monitor.js`.
 - If Slack changes its layout, the status check may stop finding the presence element.
+- `monitor.js` records timestamps in local time using the IANA timezone `"Asia/Dhaka"` by default. Change the `timeZone` value in `monitor.js` if you want a different timezone.
 
-- Timestamps: `monitor.js` records timestamps in local time using the IANA timezone `"Asia/Dhaka"` by default. To use your timezone, change the `timeZone` value in [monitor.js](monitor.js#L26) to your IANA timezone (for example, `"America/Los_Angeles"`).
-
-## Common problems
+## Common Problems
 
 ### It will not let me paste code
 
@@ -57,8 +74,6 @@ Some browsers block pasting into DevTools Console until you allow it.
 - Click inside the Console.
 - Type `allow pasting` and press Enter if the browser asks for it.
 - Try pasting again.
-
-If that still does not work, make sure the Console tab is focused and that the browser is not showing a security warning above the prompt.
 
 ### I see `Status element not found`
 
@@ -82,17 +97,15 @@ That means the monitor did not capture any samples yet.
 - Wait at least one minute after running `monitor.js`.
 - Then run `download.js` again.
 
-## What the values mean
+## What the Values Mean
 
 - `1` means the status looked active or online.
 - `0` means the status looked inactive or offline.
 
-## How it works
+## How It Works
 
-`monitor.js` stores each sample in an array called `activityLog`, then prints a CSV row to the console each time it checks Slack. `download.js` reads that same array and downloads it as a text file.
+`monitor.js` stores each sample in an array called `activityLog`, then prints a CSV row to the console each time it checks Slack.
 
-Because the data is stored in the page session, the simplest workflow is:
+`download.js` reads that same array and downloads it as a text file.
 
-1. Run `monitor.js`.
-2. Leave the Slack tab open.
-3. When finished, run `download.js`.
+`main.py` uses the saved log files under `logs/`, lets you pick or type a date, and plots that date as a heatmap.
