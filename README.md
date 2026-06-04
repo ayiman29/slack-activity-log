@@ -90,6 +90,7 @@ That usually means Slack changed its page structure or the expected status eleme
 - Stay on the main Slack page.
 - Refresh Slack and run `monitor.js` again.
 - If the message keeps appearing, the selector in `monitor.js` may need to be updated.
+- DO OPEN AN ISSUE PLEASE.
 
 ### `download.js` does nothing
 
