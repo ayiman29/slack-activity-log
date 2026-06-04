@@ -34,7 +34,11 @@ The project uses `pandas`, `numpy`, and `matplotlib`. `tkinter` is part of the P
 
 ## How to Use It
 
-1. Open Slack in your browser and go to the page you want to monitor. Open the profile of the user you want to keep a log of.
+
+1. Open Slack in your browser and go to the page you want to monitor. Open the profile of the user you want to keep a log of like this:
+   
+   <img width="1846" height="912" alt="image" src="https://github.com/user-attachments/assets/6abaf9ef-35b1-4a13-88e5-764e1f1be5a6" />
+
 2. Open the browser Developer Tools console.
 3. Paste the contents of `monitor.js` into the Console and press Enter.
 4. Leave the tab open while monitoring is running.
@@ -46,6 +50,12 @@ The project uses `pandas`, `numpy`, and `matplotlib`. `tkinter` is part of the P
 
 <img width="1920" height="1030" alt="image" src="https://github.com/user-attachments/assets/208d9ae3-886c-4b90-9d9c-7ce5b9447d86" />
 
+
+Here,
+
+- 🟩 Green → Active
+- ⬛ Black → Away
+- ⬜ Grey → No logs
 
 
 ## Console Shortcuts
